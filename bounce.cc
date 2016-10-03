@@ -2,13 +2,16 @@
 
 #include <iostream>
 
-char particleSymbol = 'x';
-int minColumn = 0;
+
+const char particleSymbol = 'x';
+const int minColumn = 0;
+const int maxColumn = 80;
+
 double particlePosition = minColumn;
 double particleSpeed = 6.3;
-int maxColumn = 80;
 
-void draw(double particlePosition, char particleSymbol) 
+
+void draw(const double particlePosition, const char particleSymbol) 
 {
 	for (int i = 0; i < particlePosition; i++) 
 		{
@@ -36,7 +39,7 @@ int main()
 {
 
   int timeStep = 0;
-  int stopTime = 60;
+  const int stopTime = 60;
 
   while (timeStep < stopTime) 
   {
