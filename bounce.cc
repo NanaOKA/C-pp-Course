@@ -8,23 +8,23 @@ double particlePosition = minColumn;
 double particleSpeed = 6.3;
 int maxColumn = 80;
 
-void draw() 
+void draw(double particlePosition, char particleSymbol) 
 {
 	for (int i = 0; i < particlePosition; i++) 
 		{
-      			std::cout << " ";
-    		}
+      std::cout << " ";
+  	}
     	std::cout << particleSymbol << std::endl;
 }
 
-void move()
+void move(double particlePosition, double particleSpeed)
 {
 	particlePosition += particleSpeed;
 	if (particlePosition >= maxColumn) 
 	{
-      		particlePosition = maxColumn;
-      		particleSpeed = -particleSpeed;
-    	} 
+  	particlePosition = maxColumn;
+    particleSpeed = -particleSpeed;
+	} 
 	else if (particlePosition < minColumn) 
 	{
 		particlePosition = minColumn;
@@ -39,9 +39,8 @@ int main() {
 
   while (timeStep < stopTime) {
    
-    draw();
-
-    move();
+    draw(particlePosition,particleSymbol);
+    move(particlePosition,particleSpeed);
     timeStep++;
   
 	}
