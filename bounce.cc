@@ -21,25 +21,33 @@ void print_screen();
 
 int main() 
 {
-  const char particleSymbol = 'x';
-  double particlePosition = minColumn;
-  double particleSpeed = 6.3;	
+  char particleSymbol[] = {'*','+','^','o','*'};
+  double particlePosition[] = {minColumn,minColumn+3,minColumn+3,minColumn+7,minColumn+11};
+  double particleSpeed[] = {1,3,5,7,11};
+  // const char particleSymbol = 'x';
+  // double particlePosition = minColumn;
+  // double particleSpeed = 6.3;	
 
-  const char particleSymbol2 = '+';
-  double particlePosition2 = minColumn;
-  double particleSpeed2 = 8.3;
+  // const char particleSymbol2 = '+';
+  // double particlePosition2 = minColumn;
+  // double particleSpeed2 = 8.3;
 
   int timeStep = 0;
-  const int stopTime = 60;
+  const int stopTime = 100;
 
   while (timeStep < stopTime) 
   {
    	clear_screen();
-    draw(particlePosition,particleSymbol);
-    draw(particlePosition2,particleSymbol2);
+   	for (int i = 0 ; i < 5; i++)
+   	{
+   		draw(particlePosition[i],particleSymbol[i]);
+   		move(particlePosition[i],particleSpeed[i]);
+   	}
+    // draw(particlePosition,particleSymbol);
+    // draw(particlePosition2,particleSymbol2);
 
-    move(particlePosition,particleSpeed);
-    move(particlePosition2,particleSpeed2);
+    // move(particlePosition,particleSpeed);
+    // move(particlePosition2,particleSpeed2);
     print_screen();
 
     timeStep++;
