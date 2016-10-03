@@ -17,7 +17,7 @@ void draw(double particlePosition, char particleSymbol)
     	std::cout << particleSymbol << std::endl;
 }
 
-void move(double particlePosition, double particleSpeed)
+void move(double& particlePosition, double& particleSpeed)
 {
 	particlePosition += particleSpeed;
 	if (particlePosition >= maxColumn) 
@@ -32,21 +32,20 @@ void move(double particlePosition, double particleSpeed)
 	}
 }
 
-int main() {
+int main() 
+{
 
   int timeStep = 0;
   int stopTime = 60;
 
-  while (timeStep < stopTime) {
+  while (timeStep < stopTime) 
+  {
    
     draw(particlePosition,particleSymbol);
     move(particlePosition,particleSpeed);
+    
     timeStep++;
   
 	}
 
-    for (int i = 0; i < particlePosition; i++) {
-      std::cout << " ";
-    }
-    std::cout << particleSymbol << std::endl;
 }
