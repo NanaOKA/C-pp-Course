@@ -5,12 +5,11 @@
 using std::cout; 
 using std::endl;
 
-const char particleSymbol = 'x';
+
 const int minColumn = 0;
 const int maxColumn = 80;
 
-double particlePosition = minColumn;
-double particleSpeed = 6.3;
+
 
 char screen[maxColumn];
 
@@ -22,6 +21,13 @@ void print_screen();
 
 int main() 
 {
+  const char particleSymbol = 'x';
+  double particlePosition = minColumn;
+  double particleSpeed = 6.3;	
+
+  const char particleSymbol2 = '+';
+  double particlePosition2 = minColumn;
+  double particleSpeed2 = 8.3;
 
   int timeStep = 0;
   const int stopTime = 60;
@@ -30,7 +36,10 @@ int main()
   {
    	clear_screen();
     draw(particlePosition,particleSymbol);
+    draw(particlePosition2,particleSymbol2);
+
     move(particlePosition,particleSpeed);
+    move(particlePosition2,particleSpeed2);
     print_screen();
 
     timeStep++;
