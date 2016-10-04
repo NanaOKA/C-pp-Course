@@ -8,10 +8,10 @@ using std::endl;
 
 const int minColumn = 0;
 const int maxColumn = 80;
+const int screenSize = maxColumn+1;
 
 
-
-char screen[maxColumn];
+char screen[maxColumn+1];
 
 void draw(const double, const char, char*);
 void move(double&, double&);
@@ -83,7 +83,7 @@ void move(double& particlePosition, double& particleSpeed)
 
 void clear_screen(char* screen)
 {
-	for (int i = 0; i < maxColumn; i++)
+	for (int i = 0; i < screenSize; i++)
 	{
 		screen[i] = ' ';
 	}
@@ -91,7 +91,7 @@ void clear_screen(char* screen)
 
 void print_screen(char* screen)
 {
-	for (int i = 0; i < maxColumn; i++)
+	for (int i = 0; i < screenSize; i++)
 	{
 		std::cout << screen[i];
 	}
