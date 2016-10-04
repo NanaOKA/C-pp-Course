@@ -11,7 +11,8 @@ const int maxColumn = 80;
 const int screenSize = maxColumn+1;
 
 
-char screen[screenSize];
+// char screen[screenSize];
+char* screen = new char[screenSize];
 
 void draw(const double, const char, char*);
 void move(double&, double&);
@@ -55,6 +56,7 @@ int main()
     timeStep++;
   
 	}
+	delete [] screen;
 }
 
 void draw(const double particlePosition, const char particleSymbol, char* screen) 
