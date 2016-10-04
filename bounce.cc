@@ -16,19 +16,19 @@ struct Particle
 	double particlePosition;
 	double particleSpeed;
 
-	void initialize(Particle * p, char particleSymbol, double particlePosition, double particleSpeed)
+	void initialize(char particleSymbol, double particlePosition, double particleSpeed)
 	{
 		this->particleSymbol = particleSymbol;
 		this->particlePosition = particlePosition;
 		this->particleSpeed = particleSpeed;
 	}
 
-	void draw(Particle const * const p, char * const screen) 
+	void draw(char * const screen) 
 	{
 		screen[static_cast<int>(this->particlePosition)] = this->particleSymbol;
 	}
 
-	void move(Particle * const p)
+	void move()
 	{
 		this->particlePosition += this->particleSpeed;
 		if (this->particlePosition >= maxColumn) 
@@ -53,9 +53,9 @@ int main()
 {
   Particle p[3];
 
-  p[0].initialize(&p[0], '*', minColumn, 1);
-  p[1].initialize(&p[1], '*', minColumn, 3.5);
-  p[2].initialize(&p[2], '*', minColumn, 5.9);
+  p[0].initialize('*', minColumn, 1);
+  p[1].initialize('*', minColumn, 3.5);
+  p[2].initialize('*', minColumn, 5.9);
 
   int timeStep = 0;
   const int stopTime = 100;
@@ -65,8 +65,8 @@ int main()
    	clear_screen(screen);
    	for (int i = 0 ; i < 3; i++)
    	{
-   		p[i].draw(&p[i], screen);
-   		p[i].move(&p[i]);
+   		p[i].draw(screen);
+   		p[i].move();
    	}
 
     print_screen(screen);
