@@ -23,7 +23,7 @@ struct Particle
 		particleSpeed = particleSpeed_;
 	}
 
-	void draw(char * const screen) 
+	void draw(char * const screen) const
 	{
 		screen[static_cast<int>(particlePosition)] = particleSymbol;
 	}
