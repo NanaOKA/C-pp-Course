@@ -19,12 +19,23 @@ void move(double&, double&);
 void clear_screen(char*);
 void print_screen(char*);
 
+struct Particle
+{
+	char particleSymbol;
+	double particlePosition;
+	double particleSpeed;
+};
 
 int main() 
 {
-  char particleSymbol[] = {'*','+','^','o','*'};
-  double particlePosition[] = {minColumn,minColumn+3,minColumn+5,minColumn+7,minColumn+11};
-  double particleSpeed[] = {1,3,5,7,11};
+   Particle p[] = {{'*',minColumn,1},
+                   {'+',minColumn,3},
+                   {'^',minColumn,5}};		
+  
+  // char particleSymbol[] = {'*','+','^','o','*'};
+  // double particlePosition[] = {minColumn,minColumn+3,minColumn+5,minColumn+7,minColumn+11};
+  // double particleSpeed[] = {1,3,5,7,11};
+  
   // const char particleSymbol = 'x';
   // double particlePosition = minColumn;
   // double particleSpeed = 6.3;	
@@ -39,10 +50,14 @@ int main()
   while (timeStep < stopTime) 
   {
    	clear_screen(screen);
-   	for (int i = 0 ; i < 5; i++)
+   	for (int i = 0 ; i < 3; i++)
    	{
-   		draw(*(particlePosition+i),*(particleSymbol+i),screen);
-   		move(*(particlePosition+i),*(particleSpeed+i));
+   		draw(p[i].particlePosition, p[i].particleSymbol, screen);
+   		move(p[i].particlePosition, p[i].particleSpeed);
+
+   		// draw(*(particlePosition+i),*(particleSymbol+i),screen);
+   		// move(*(particlePosition+i),*(particleSpeed+i));
+
    		// draw(particlePosition[i],particleSymbol[i],screen);
    		// move(particlePosition[i],particleSpeed[i]);
    	}
