@@ -20,17 +20,19 @@ struct Particle
 // char screen[screenSize];
 char* const screen = new char[screenSize];
 
-void draw(Particle* const, char* const);
-void move(Particle* const);
-void clear_screen(char* const);
-void print_screen(char* const);
+void initialize(Particle * const, char, double, double);
+void draw(Particle const * const, char * const);
+void move(Particle * const);
+void clear_screen(char * const);
+void print_screen(char * const);
 
 int main() 
 {
-   Particle p[] = {{'*',minColumn,1},
-                   {'+',minColumn,3.5},
-                   {'^',minColumn,5.9}};		
-  
+  Particle p[3];
+
+  initialize(&p[0], '*', minColumn, 1);
+  initialize(&p[1], '*', minColumn, 3.5);
+  initialize(&p[2], '*', minColumn, 5.9);
   // char particleSymbol[] = {'*','+','^','o','*'};
   // double particlePosition[] = {minColumn,minColumn+3,minColumn+5,minColumn+7,minColumn+11};
   // double particleSpeed[] = {1,3,5,7,11};
@@ -68,12 +70,17 @@ int main()
     print_screen(screen);
 
     timeStep++;
-  
-	}
+  }
 	delete [] screen;
 }
 
-void draw(Particle* const p, char* const screen) 
+void initialize(Particle * p, char particleSymbol, double particlePosition, double particleSpeed)
+{
+	p->particleSymbol = particleSymbol;
+	p->particlePosition = particlePosition;
+	p->particleSpeed = particleSpeed;
+}
+void draw(Particle const * const p, char * const screen) 
 {
 	//screen[(int)particlePosition] = particleSymbol
 	screen[static_cast<int>(p->particlePosition)] = p->particleSymbol;
@@ -84,7 +91,7 @@ void draw(Particle* const p, char* const screen)
  //    std::cout << particleSymbol << std::endl;
 }
 
-void move(Particle* const p)
+void move(Particle * const p)
 {
 	p->particlePosition += p->particleSpeed;
 	if (p->particlePosition >= maxColumn) 
@@ -99,7 +106,7 @@ void move(Particle* const p)
 	}
 }
 
-void clear_screen(char* const screen)
+void clear_screen(char * const screen)
 {
 	for (int i = 0; i < screenSize; i++)
 	{
@@ -107,7 +114,7 @@ void clear_screen(char* const screen)
 	}
 }
 
-void print_screen(char* const screen)
+void print_screen(char * const screen)
 {
 	for (int i = 0; i < screenSize; i++)
 	{
