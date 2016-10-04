@@ -71,6 +71,11 @@ struct Screen
 		}
 		std::cout << std::endl;
 	}	
+
+	void destroy_screen()
+	{
+		delete [] screen;
+	}
 };
 
 int main() 
@@ -100,7 +105,7 @@ int main()
 
     timeStep++;
   }
-	delete [] display.screen;
+	display.destroy_screen();
 }
 
 
