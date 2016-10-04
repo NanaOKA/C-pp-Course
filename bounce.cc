@@ -10,6 +10,8 @@ const int minColumn = 0;
 const int maxColumn = 80;
 const int screenSize = maxColumn+1;
 
+char* const screen = new char[screenSize];
+
 struct Particle
 {
 	char particleSymbol;
@@ -44,14 +46,30 @@ struct Particle
 	}
 };
 
-char* const screen = new char[screenSize];
+struct Screen
+{
+	void clear_screen()
+	{
+		for (int i = 0; i < screenSize; i++)
+		{
+			screen[i] = ' ';
+		}
+	}
 
-void clear_screen(char * const);
-void print_screen(char * const);
+	void print_screen()
+	{
+		for (int i = 0; i < screenSize; i++)
+		{
+			std::cout << screen[i];
+		}
+		std::cout << std::endl;
+	}	
+};
 
 int main() 
 {
   Particle p[3];
+  Screen display;
 
   p[0].initialize('*', minColumn, 1);
   p[1].initialize('o', minColumn, 3.5);
@@ -62,36 +80,21 @@ int main()
 
   while (timeStep < stopTime) 
   {
-   	clear_screen(screen);
+
+   	display.clear_screen();
+
    	for (int i = 0 ; i < 3; i++)
    	{
    		p[i].draw(screen);
    		p[i].move();
    	}
 
-    print_screen(screen);
+    display.print_screen();
 
     timeStep++;
   }
 	delete [] screen;
 }
 
-
-void clear_screen(char * const screen)
-{
-	for (int i = 0; i < screenSize; i++)
-	{
-		screen[i] = ' ';
-	}
-}
-
-void print_screen(char * const screen)
-{
-	for (int i = 0; i < screenSize; i++)
-	{
-		std::cout << screen[i];
-	}
-	std::cout << std::endl;
-}
 
 
