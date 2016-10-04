@@ -12,39 +12,34 @@ const int screenSize = maxColumn+1;
 
 struct Particle
 {
-
-	//void initialize(Particle * const, char, double, double);
-	//void draw(Particle const * const, char * const);
-	//void move(Particle * const);
-
 	char particleSymbol;
 	double particlePosition;
 	double particleSpeed;
 
 	void initialize(Particle * p, char particleSymbol, double particlePosition, double particleSpeed)
 	{
-		p->particleSymbol = particleSymbol;
-		p->particlePosition = particlePosition;
-		p->particleSpeed = particleSpeed;
+		this->particleSymbol = particleSymbol;
+		this->particlePosition = particlePosition;
+		this->particleSpeed = particleSpeed;
 	}
 
 	void draw(Particle const * const p, char * const screen) 
 	{
-		screen[static_cast<int>(p->particlePosition)] = p->particleSymbol;
+		screen[static_cast<int>(this->particlePosition)] = this->particleSymbol;
 	}
 
 	void move(Particle * const p)
 	{
-		p->particlePosition += p->particleSpeed;
-		if (p->particlePosition >= maxColumn) 
+		this->particlePosition += this->particleSpeed;
+		if (this->particlePosition >= maxColumn) 
 		{
-	  		p->particlePosition = maxColumn;
-	    	p->particleSpeed = -p->particleSpeed;
+	  		this->particlePosition = maxColumn;
+	    	this->particleSpeed = -this->particleSpeed;
 		} 
-		else if (p->particlePosition < minColumn) 
+		else if (this->particlePosition < minColumn) 
 		{
-			p->particlePosition = minColumn;
-			p->particleSpeed = -p->particleSpeed;
+			this->particlePosition = minColumn;
+			this->particleSpeed = -this->particleSpeed;
 		}
 	}
 };
