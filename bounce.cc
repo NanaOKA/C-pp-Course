@@ -10,21 +10,20 @@ const int minColumn = 0;
 const int maxColumn = 80;
 const int screenSize = maxColumn+1;
 
-
-// char screen[screenSize];
-char* screen = new char[screenSize];
-
-void draw(const double, const char, char*);
-void move(double&, double&);
-void clear_screen(char*);
-void print_screen(char*);
-
 struct Particle
 {
 	char particleSymbol;
 	double particlePosition;
 	double particleSpeed;
 };
+
+// char screen[screenSize];
+char* screen = new char[screenSize];
+
+void draw(Particle* , char*);
+void move(Particle*);
+void clear_screen(char*);
+void print_screen(char*);
 
 int main() 
 {
@@ -52,8 +51,8 @@ int main()
    	clear_screen(screen);
    	for (int i = 0 ; i < 3; i++)
    	{
-   		draw(p[i].particlePosition, p[i].particleSymbol, screen);
-   		move(p[i].particlePosition, p[i].particleSpeed);
+   		draw(&p[i], screen);
+   		move(&p[i]);
 
    		// draw(*(particlePosition+i),*(particleSymbol+i),screen);
    		// move(*(particlePosition+i),*(particleSpeed+i));
@@ -74,10 +73,10 @@ int main()
 	delete [] screen;
 }
 
-void draw(const double particlePosition, const char particleSymbol, char* screen) 
+void draw(Particle* p, char* screen) 
 {
 	//screen[(int)particlePosition] = particleSymbol
-	screen[static_cast<int>(particlePosition)] = particleSymbol;
+	screen[static_cast<int>((*p).particlePosition)] = (*p).particleSymbol;
 	// for (int i = 0; i < particlePosition; i++) 
 	// 	{
  //      		std::cout << " ";
@@ -85,18 +84,18 @@ void draw(const double particlePosition, const char particleSymbol, char* screen
  //    std::cout << particleSymbol << std::endl;
 }
 
-void move(double& particlePosition, double& particleSpeed)
+void move(Particle* p)
 {
-	particlePosition += particleSpeed;
-	if (particlePosition >= maxColumn) 
+	(*p).particlePosition += (*p).particleSpeed;
+	if ((*p).particlePosition >= maxColumn) 
 	{
-  	particlePosition = maxColumn;
-    particleSpeed = -particleSpeed;
+  	(*p).particlePosition = maxColumn;
+    (*p).particleSpeed = -(*p).particleSpeed;
 	} 
-	else if (particlePosition < minColumn) 
+	else if ((*p).particlePosition < minColumn) 
 	{
-		particlePosition = minColumn;
-		particleSpeed = -particleSpeed;
+		(*p).particlePosition = minColumn;
+		(*p).particleSpeed = -(*p).particleSpeed;
 	}
 }
 
