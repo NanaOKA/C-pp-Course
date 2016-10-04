@@ -18,18 +18,18 @@ struct Particle
 };
 
 // char screen[screenSize];
-char* screen = new char[screenSize];
+char* const screen = new char[screenSize];
 
-void draw(Particle* , char*);
-void move(Particle*);
-void clear_screen(char*);
-void print_screen(char*);
+void draw(Particle* const, char* const);
+void move(Particle* const);
+void clear_screen(char* const);
+void print_screen(char* const);
 
 int main() 
 {
    Particle p[] = {{'*',minColumn,1},
-                   {'+',minColumn,3},
-                   {'^',minColumn,5}};		
+                   {'+',minColumn,3.5},
+                   {'^',minColumn,5.9}};		
   
   // char particleSymbol[] = {'*','+','^','o','*'};
   // double particlePosition[] = {minColumn,minColumn+3,minColumn+5,minColumn+7,minColumn+11};
@@ -73,7 +73,7 @@ int main()
 	delete [] screen;
 }
 
-void draw(Particle* p, char* screen) 
+void draw(Particle* const p, char* const screen) 
 {
 	//screen[(int)particlePosition] = particleSymbol
 	screen[static_cast<int>(p->particlePosition)] = p->particleSymbol;
@@ -84,7 +84,7 @@ void draw(Particle* p, char* screen)
  //    std::cout << particleSymbol << std::endl;
 }
 
-void move(Particle* p)
+void move(Particle* const p)
 {
 	p->particlePosition += p->particleSpeed;
 	if (p->particlePosition >= maxColumn) 
@@ -99,7 +99,7 @@ void move(Particle* p)
 	}
 }
 
-void clear_screen(char* screen)
+void clear_screen(char* const screen)
 {
 	for (int i = 0; i < screenSize; i++)
 	{
@@ -107,7 +107,7 @@ void clear_screen(char* screen)
 	}
 }
 
-void print_screen(char* screen)
+void print_screen(char* const screen)
 {
 	for (int i = 0; i < screenSize; i++)
 	{
