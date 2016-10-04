@@ -8,9 +8,7 @@ using std::endl;
 
 const int minColumn = 0;
 const int maxColumn = 80;
-const int screenSize = maxColumn+1;
 
-char* const screen = new char[screenSize];
 
 struct Particle
 {
@@ -48,6 +46,15 @@ struct Particle
 
 struct Screen
 {
+	char * screen;
+	unsigned screenSize;
+
+	void initialize_screen(unsigned screenSize_)
+	{
+		screenSize = screenSize_;
+		screen = new char[screenSize];
+	} 
+
 	void clear_screen()
 	{
 		for (int i = 0; i < screenSize; i++)
@@ -80,12 +87,12 @@ int main()
 
   while (timeStep < stopTime) 
   {
-
+  	display.initialize_screen(maxColumn+1);
    	display.clear_screen();
 
    	for (int i = 0 ; i < 3; i++)
    	{
-   		p[i].draw(screen);
+   		p[i].draw(display.screen);
    		p[i].move();
    	}
 
@@ -93,7 +100,7 @@ int main()
 
     timeStep++;
   }
-	delete [] screen;
+	delete [] display.screen;
 }
 
 
