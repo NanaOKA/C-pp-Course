@@ -76,7 +76,7 @@ int main()
 void draw(Particle* p, char* screen) 
 {
 	//screen[(int)particlePosition] = particleSymbol
-	screen[static_cast<int>((*p).particlePosition)] = (*p).particleSymbol;
+	screen[static_cast<int>(p->particlePosition)] = p->particleSymbol;
 	// for (int i = 0; i < particlePosition; i++) 
 	// 	{
  //      		std::cout << " ";
@@ -86,16 +86,16 @@ void draw(Particle* p, char* screen)
 
 void move(Particle* p)
 {
-	(*p).particlePosition += (*p).particleSpeed;
-	if ((*p).particlePosition >= maxColumn) 
+	p->particlePosition += p->particleSpeed;
+	if (p->particlePosition >= maxColumn) 
 	{
-  	(*p).particlePosition = maxColumn;
-    (*p).particleSpeed = -(*p).particleSpeed;
+  	p->particlePosition = maxColumn;
+    p->particleSpeed = -p->particleSpeed;
 	} 
-	else if ((*p).particlePosition < minColumn) 
+	else if (p->particlePosition < minColumn) 
 	{
-		(*p).particlePosition = minColumn;
-		(*p).particleSpeed = -(*p).particleSpeed;
+		p->particlePosition = minColumn;
+		p->particleSpeed = -p->particleSpeed;
 	}
 }
 
