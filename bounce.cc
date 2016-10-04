@@ -11,7 +11,7 @@ const int maxColumn = 80;
 const int screenSize = maxColumn+1;
 
 
-char screen[maxColumn+1];
+char screen[screenSize];
 
 void draw(const double, const char, char*);
 void move(double&, double&);
@@ -40,8 +40,10 @@ int main()
    	clear_screen(screen);
    	for (int i = 0 ; i < 5; i++)
    	{
-   		draw(particlePosition[i],particleSymbol[i],screen);
-   		move(particlePosition[i],particleSpeed[i]);
+   		draw(*(particlePosition+i),*(particleSymbol+i),screen);
+   		move(*(particlePosition+i),*(particleSpeed+i));
+   		// draw(particlePosition[i],particleSymbol[i],screen);
+   		// move(particlePosition[i],particleSpeed[i]);
    	}
     // draw(particlePosition,particleSymbol);
     // draw(particlePosition2,particleSymbol2);
