@@ -69,11 +69,12 @@ class Screen
 class Particle
 {
 	public:
-		void initialize(char particleSymbol_, double particlePosition_, double particleSpeed_)
+		Particle(char particleSymbol_, double particlePosition_, double particleSpeed_)
+		: particleSymbol(particleSymbol_), particlePosition(particlePosition_), particleSpeed(particleSpeed_)
 		{
-			particleSymbol = particleSymbol_;
-			particlePosition = particlePosition_;
-			particleSpeed = particleSpeed_;
+			//particleSymbol = particleSymbol_;
+			//particlePosition = particlePosition_;
+			//particleSpeed = particleSpeed_;
 		}
 
 		void draw(Screen &display) const //Pass screen by reference not value. See copy constructor
