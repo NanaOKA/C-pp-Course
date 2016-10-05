@@ -10,6 +10,49 @@ const int minColumn = 0;
 const int maxColumn = 80;
 
 
+
+
+struct Screen
+{
+	public:
+		void initialize_screen(unsigned screenSize_)
+		{
+			screenSize = screenSize_;
+			screen = new char[screenSize];
+		} 
+
+		void clear_screen()
+		{
+			for (int i = 0; i < screenSize; i++)
+			{
+				screen[i] = ' ';
+			}
+		}
+
+		void print_screen()
+		{
+			for (int i = 0; i < screenSize; i++)
+			{
+				std::cout << screen[i];
+			}
+			std::cout << std::endl;
+		}	
+
+		void destroy_screen()
+		{
+			delete [] screen;
+		}
+
+		void put(int particlePosition_, char particleSymbol_)
+		{
+			screen[(particlePosition_)] = particleSymbol_;
+		}
+
+	private:
+		char * screen;
+		unsigned screenSize;
+};
+
 struct Particle
 {
 	char particleSymbol;
@@ -23,9 +66,9 @@ struct Particle
 		particleSpeed = particleSpeed_;
 	}
 
-	void draw(char * const screen) const
+	void draw(Screen display) const
 	{
-		screen[static_cast<int>(particlePosition)] = particleSymbol;
+		display.put(particlePosition,particleSymbol);
 	}
 
 	void move()
@@ -41,40 +84,6 @@ struct Particle
 			particlePosition = minColumn;
 			particleSpeed = -particleSpeed;
 		}
-	}
-};
-
-struct Screen
-{
-	char * screen;
-	unsigned screenSize;
-
-	void initialize_screen(unsigned screenSize_)
-	{
-		screenSize = screenSize_;
-		screen = new char[screenSize];
-	} 
-
-	void clear_screen()
-	{
-		for (int i = 0; i < screenSize; i++)
-		{
-			screen[i] = ' ';
-		}
-	}
-
-	void print_screen()
-	{
-		for (int i = 0; i < screenSize; i++)
-		{
-			std::cout << screen[i];
-		}
-		std::cout << std::endl;
-	}	
-
-	void destroy_screen()
-	{
-		delete [] screen;
 	}
 };
 
@@ -96,8 +105,8 @@ int main()
    	display.clear_screen();
 
    	for (int i = 0 ; i < 3; i++)
-   	{
-   		p[i].draw(display.screen);
+   	{	
+   		p[i].draw(display);
    		p[i].move();
    	}
 
