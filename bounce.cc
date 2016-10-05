@@ -109,7 +109,7 @@ class Particle
 			}
 		}
 
-		Particle operator=(Particle const otherparticle_)
+		Particle& operator=(const Particle& otherparticle_)
 		{
 			this->particleSymbol = otherparticle_.particleSymbol;
 			this->particleSpeed = otherparticle_.particleSpeed;
