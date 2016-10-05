@@ -74,7 +74,7 @@ class Particle
 			particleSpeed = particleSpeed_;
 		}
 
-		void draw(Screen display) const //Pass screen by reference not value. See copy constructor
+		void draw(Screen &display) const //Pass screen by reference not value. See copy constructor
 		{
 			display.put(particlePosition,particleSymbol);
 		}
