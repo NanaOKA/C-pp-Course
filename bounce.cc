@@ -25,6 +25,11 @@ class Screen
 			}
 		}
 
+		Screen(const Screen& givenname)
+		{
+			cout << "Screen copy constructor running" << endl;
+		}
+
 		void print_screen()
 		{
 			for (int i = 0; i < screenSize; i++)
