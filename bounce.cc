@@ -11,7 +11,7 @@ const int maxColumn = 80;
 class Screen
 {
 	public:
-		Screen(unsigned screenSize_)
+		Screen(unsigned screenSize_) //Constructor
 		{
 			screenSize = screenSize_;
 			screen = new char[screenSize];
@@ -34,7 +34,7 @@ class Screen
 			std::cout << std::endl;
 		}	
 
-		void destroy_screen()
+		~Screen()
 		{
 			delete [] screen;
 		}
@@ -45,7 +45,7 @@ class Screen
 		}
 
 	private:
-		char * screen;
+		char * screen; //this instead of screen[] because dynamic
 		unsigned screenSize;
 };
 
@@ -88,7 +88,7 @@ class Particle
 int main() 
 {
   Particle p[3];
-  Screen display(maxColumn + 1);
+  Screen display(maxColumn + 1); //Also for 1 parameter, Screen display = maxColumn
 
   p[0].initialize('*', minColumn, 1);
   p[1].initialize('o', minColumn, 3.5);
@@ -99,7 +99,6 @@ int main()
 
   while (timeStep < stopTime) 
   {
-  	//display.initialize_screen(maxColumn+1);
    	display.clear_screen();
 
    	for (int i = 0 ; i < 3; i++)
@@ -112,7 +111,7 @@ int main()
 
     timeStep++;
   }
-	display.destroy_screen();
+	//display.destroy_screen(); //Function replaced delete [] screen
 }
 
 
