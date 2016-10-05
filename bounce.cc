@@ -80,7 +80,6 @@ class Particle
 		Particle()
 		: particleSymbol('x'), particlePosition(4), particleSpeed(10)
 		{
-
 		}
 
 		void draw(Screen &display) const //Pass screen by reference not value. See copy constructor
@@ -113,7 +112,11 @@ int main()
 {
   const int Nparticles=3;
 
-  Particle p[Nparticles];//= {{'*', minColumn, 1},{'o', minColumn, 3.5},{'+', minColumn, 5.9}};
+  Particle p[Nparticles];
+  //{{'*', minColumn, 1},{'o', minColumn, 3.5},{'+', minColumn, 5.9}};
+  p[0] = Particle('*', minColumn, 1);
+  p[1] = Particle('o', minColumn, 3.5);
+  p[2] = Particle('+', minColumn, 5.9);
 
   Screen display(maxColumn + 1); //Also for 1 parameter, Screen display = maxColumn
 
