@@ -11,7 +11,6 @@ struct Inner
 struct Outer 
 {
    Inner i;
-   Outer(): i(3){}
    // Ways of fixing
    //1. Delete Inner i
    //2. Add, Outer(): i(3){}

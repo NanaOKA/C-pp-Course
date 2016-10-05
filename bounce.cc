@@ -61,6 +61,11 @@ class Screen
 			screen[(particlePosition_)] = particleSymbol_;
 		}
 
+		char & operator[](unsigned const particlePosition_)
+		{
+			return this->screen[particlePosition_];
+		} 
+
 	private:
 		char * screen; //this instead of screen[] because dynamic	
 		unsigned screenSize;
@@ -84,7 +89,9 @@ class Particle
 
 		void draw(Screen &display) const //Pass screen by reference not value. See copy constructor
 		{
-			display.put(particlePosition,particleSymbol);
+			//display.put(particlePosition,particleSymbol);
+			//display.operator[](particlePosition) = particleSymbol;
+			display[particlePosition]=particleSymbol;
 		}
 
 		void move()
