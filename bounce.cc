@@ -12,7 +12,7 @@ const int maxColumn = 80;
 
 
 
-struct Screen
+class Screen
 {
 	public:
 		void initialize_screen(unsigned screenSize_)
