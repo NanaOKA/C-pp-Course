@@ -5,17 +5,13 @@
 using std::cout; 
 using std::endl;
 
-
 const int minColumn = 0;
 const int maxColumn = 80;
-
-
-
 
 class Screen
 {
 	public:
-		void initialize_screen(unsigned screenSize_)
+		Screen(unsigned screenSize_)
 		{
 			screenSize = screenSize_;
 			screen = new char[screenSize];
@@ -53,44 +49,46 @@ class Screen
 		unsigned screenSize;
 };
 
-struct Particle
+class Particle
 {
-	char particleSymbol;
-	double particlePosition;
-	double particleSpeed;
-
-	void initialize(char particleSymbol_, double particlePosition_, double particleSpeed_)
-	{
-		particleSymbol = particleSymbol_;
-		particlePosition = particlePosition_;
-		particleSpeed = particleSpeed_;
-	}
-
-	void draw(Screen display) const
-	{
-		display.put(particlePosition,particleSymbol);
-	}
-
-	void move()
-	{
-		particlePosition += particleSpeed;
-		if (particlePosition >= maxColumn) 
+	public:
+		void initialize(char particleSymbol_, double particlePosition_, double particleSpeed_)
 		{
-	  		particlePosition = maxColumn;
-	    	particleSpeed = -particleSpeed;
-		} 
-		else if (particlePosition < minColumn) 
-		{
-			particlePosition = minColumn;
-			particleSpeed = -particleSpeed;
+			particleSymbol = particleSymbol_;
+			particlePosition = particlePosition_;
+			particleSpeed = particleSpeed_;
 		}
-	}
+
+		void draw(Screen display) const
+		{
+			display.put(particlePosition,particleSymbol);
+		}
+
+		void move()
+		{
+			particlePosition += particleSpeed;
+			if (particlePosition >= maxColumn) 
+			{
+		  		particlePosition = maxColumn;
+		    	particleSpeed = -particleSpeed;
+			} 
+			else if (particlePosition < minColumn) 
+			{
+				particlePosition = minColumn;
+				particleSpeed = -particleSpeed;
+			}
+		}
+
+	private:
+		char particleSymbol;
+		double particlePosition;
+		double particleSpeed;
 };
 
 int main() 
 {
   Particle p[3];
-  Screen display;
+  Screen display(maxColumn + 1);
 
   p[0].initialize('*', minColumn, 1);
   p[1].initialize('o', minColumn, 3.5);
@@ -101,7 +99,7 @@ int main()
 
   while (timeStep < stopTime) 
   {
-  	display.initialize_screen(maxColumn+1);
+  	//display.initialize_screen(maxColumn+1);
    	display.clear_screen();
 
    	for (int i = 0 ; i < 3; i++)
