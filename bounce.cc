@@ -12,9 +12,10 @@ class Screen
 {
 	public:
 		Screen(unsigned screenSize_) //Constructor
+		: screen(new char [screenSize_]), screenSize(screenSize_)
 		{
-			screenSize = screenSize_;
-			screen = new char[screenSize];
+			//screenSize = screenSize_;
+			//screen = new char[screenSize];
 		} 
 
 		void clear_screen()
@@ -31,11 +32,12 @@ class Screen
 		// }
 
 		Screen(const Screen &given) //Copy constructor to create own copy
+		: screen(new char [given.screenSize]), screenSize(given.screenSize)
 		{
 			cout << "Copy constructor creating local copy" << endl;
 			
-			this->screenSize = given.screenSize;
-			this->screen = new char[screenSize];
+			//this->screenSize = given.screenSize;
+			//this->screen = new char[screenSize];
 			
 			std::copy(given.screen, given.screen+screenSize, this->screen);
 		}
@@ -60,7 +62,7 @@ class Screen
 		}
 
 	private:
-		char * screen; //this instead of screen[] because dynamic
+		char * screen; //this instead of screen[] because dynamic	
 		unsigned screenSize;
 };
 
