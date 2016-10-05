@@ -109,6 +109,14 @@ class Particle
 			}
 		}
 
+		Particle operator=(Particle const otherparticle_)
+		{
+			this->particleSymbol = otherparticle_.particleSymbol;
+			this->particleSpeed = otherparticle_.particleSpeed;
+			this->particlePosition = otherparticle_.particlePosition;
+			return *this;
+		} 
+
 	private:
 		char particleSymbol;
 		double particlePosition;
