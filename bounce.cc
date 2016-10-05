@@ -37,7 +37,7 @@ class Screen
 			this->screenSize = given.screenSize;
 			this->screen = new char[screenSize];
 			
-			std::copy(given.screen, given.screen+screenSize, screen);
+			std::copy(given.screen, given.screen+screenSize, this->screen);
 		}
 
 		void print_screen()
