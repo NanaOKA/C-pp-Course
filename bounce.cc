@@ -25,9 +25,19 @@ class Screen
 			}
 		}
 
-		Screen(const Screen& givenname)
+		// Screen(const Screen& givenname)
+		// {
+		// 	cout << "Screen copy constructor running" << endl;
+		// }
+
+		Screen(const Screen &given) //Copy constructor to create own copy
 		{
-			cout << "Screen copy constructor running" << endl;
+			cout << "Copy constructor creating local copy" << endl;
+			
+			this->screenSize = given.screenSize;
+			this->screen = new char[screenSize];
+			
+			std::copy(given.screen, given.screen+screenSize, screen);
 		}
 
 		void print_screen()
@@ -64,7 +74,7 @@ class Particle
 			particleSpeed = particleSpeed_;
 		}
 
-		void draw(Screen& display) const //Pass screen by reference not value. See copy constructor
+		void draw(Screen display) const //Pass screen by reference not value. See copy constructor
 		{
 			display.put(particlePosition,particleSymbol);
 		}
