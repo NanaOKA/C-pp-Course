@@ -111,9 +111,12 @@ class Particle
 
 		Particle& operator=(const Particle& otherparticle_)
 		{
-			this->particleSymbol = otherparticle_.particleSymbol;
-			this->particleSpeed = otherparticle_.particleSpeed;
-			this->particlePosition = otherparticle_.particlePosition;
+			if (this != &otherparticle_)
+			{
+				this->particleSymbol = otherparticle_.particleSymbol;
+				this->particleSpeed = otherparticle_.particleSpeed;
+				this->particlePosition = otherparticle_.particlePosition;
+			}
 			return *this;
 		} 
 
