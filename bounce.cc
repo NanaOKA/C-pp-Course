@@ -77,6 +77,12 @@ class Particle
 			//particleSpeed = particleSpeed_;
 		}
 
+		Particle()
+		: particleSymbol('x'), particlePosition(4), particleSpeed(10)
+		{
+
+		}
+
 		void draw(Screen &display) const //Pass screen by reference not value. See copy constructor
 		{
 			display.put(particlePosition,particleSymbol);
@@ -105,12 +111,15 @@ class Particle
 
 int main() 
 {
-  Particle p[3];
+  const int Nparticles=3;
+
+  Particle p[Nparticles];//= {{'*', minColumn, 1},{'o', minColumn, 3.5},{'+', minColumn, 5.9}};
+
   Screen display(maxColumn + 1); //Also for 1 parameter, Screen display = maxColumn
 
-  p[0].initialize('*', minColumn, 1);
-  p[1].initialize('o', minColumn, 3.5);
-  p[2].initialize('+', minColumn, 5.9);
+  //p[0].initialize('*', minColumn, 1);
+  //p[1].initialize('o', minColumn, 3.5);
+  //p[2].initialize('+', minColumn, 5.9);
 
   int timeStep = 0;
   const int stopTime = 100;
