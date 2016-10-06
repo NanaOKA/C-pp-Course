@@ -149,7 +149,7 @@ int main()
   p[1] = Particle('o', minColumn, 3.5);
   p[2] = Particle('+', minColumn, 5.9);
 
-  Screen display(maxColumn + 1); //Also for 1 parameter, Screen display = maxColumn
+  Screen display=Screen(maxColumn + 1); //Also for 1 parameter, Screen display = maxColumn
 
   //p[0].initialize('*', minColumn, 1);
   //p[1].initialize('o', minColumn, 3.5);
