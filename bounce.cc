@@ -71,8 +71,9 @@ class Screen
 		// destructor
 		Screen& operator=(Screen given)
 		{
-			std::swap(this->screenSize,given.screenSize);
-			std::swap(this->screen,given.screen);
+			using std::swap;
+			swap(this->screenSize,given.screenSize);
+			swap(this->screen,given.screen);
 			return *this;
 		}
 
