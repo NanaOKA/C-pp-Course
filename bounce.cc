@@ -71,17 +71,24 @@ class Screen
 		// destructor
 		Screen& operator=(Screen given)
 		{
-			using std::swap; // Specific to swap
-			swap(this->screenSize,given.screenSize);
-			swap(this->screen,given.screen);
+			swap(*this, given);
 			return *this;
 		}
 
+		friend void swap(Screen& lhs, Screen& rhs);
 
 	private:
 		char * screen; //this instead of screen[] because dynamic	
 		unsigned screenSize;
 };
+
+void swap(Screen& lhs, Screen& rhs)
+{
+	using std::swap;
+	swap(lhs.screenSize, rhs.screenSize);
+	swap(lhs.screen, rhs.screen);
+}
+
 
 class Particle
 {
