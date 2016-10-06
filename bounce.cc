@@ -1,6 +1,7 @@
 // N.B. This program contains a bug, on purpose.
 
 #include <iostream>
+#include <algorithm>
 
 using std::cout; 
 using std::endl;
@@ -68,22 +69,10 @@ class Screen
 
 		// Assignment operator is combination of copy constructor and 
 		// destructor
-		Screen& operator=(const Screen& given)
+		Screen& operator=(Screen given)
 		{
-			if (this != &given)
-			{
-				//Deallocate old memory
-				delete [] this->screen;
-				//Allocate new memeory
-				this->screen = new char[given.screenSize];
-				//Copy size
-				this->screenSize = given.screenSize;
-				//Copy data
-				std::copy(given.screen, given.screen+screenSize, this->screen);
-				
-				//delete [] this;
-				//std::copy(given.screen, given.screen+screenSize, this->screen);
-			}
+			std::swap(this->screenSize,given.screenSize);
+			std::swap(this->screen,given.screen);
 			return *this;
 		}
 
@@ -158,7 +147,7 @@ int main()
   p[1] = Particle('o', minColumn, 3.5);
   p[2] = Particle('+', minColumn, 5.9);
 
-  Screen display=Screen(maxColumn + 1); //Also for 1 parameter, Screen display = maxColumn
+  Screen display(maxColumn + 1); //Also for 1 parameter, Screen display = maxColumn
 
   //p[0].initialize('*', minColumn, 1);
   //p[1].initialize('o', minColumn, 3.5);
