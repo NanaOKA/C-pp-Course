@@ -72,8 +72,17 @@ class Screen
 		{
 			if (this != &given)
 			{
-				delete [] this;
+				//Deallocate old memory
+				delete [] this->screen;
+				//Allocate new memeory
+				this->screen = new char[given.screenSize];
+				//Copy size
+				this->screenSize = given.screenSize;
+				//Copy data
 				std::copy(given.screen, given.screen+screenSize, this->screen);
+				
+				//delete [] this;
+				//std::copy(given.screen, given.screen+screenSize, this->screen);
 			}
 			return *this;
 		}
