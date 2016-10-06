@@ -66,6 +66,19 @@ class Screen
 			return this->screen[particlePosition_];
 		} 
 
+		// Assignment operator is combination of copy constructor and 
+		// destructor
+		Screen& operator=(const Screen& given)
+		{
+			if (this != &given)
+			{
+				delete [] this;
+				std::copy(given.screen, given.screen+screenSize, this->screen);
+			}
+			return *this;
+		}
+
+
 	private:
 		char * screen; //this instead of screen[] because dynamic	
 		unsigned screenSize;
