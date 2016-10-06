@@ -1,7 +1,11 @@
 // N.B. This program contains a bug, on purpose.
 
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
 #include <algorithm>
+
 #include "Screen.hh"
 #include "Particle.hh"
 
@@ -13,19 +17,29 @@ const int maxColumn = 80;
 
 int main() 
 {
-  const int Nparticles=3;
+  std::string filename("config");
+  std::ifstream config(filename.c_str());
+  
+  if (!config)
+  {
+    std::cerr << "Could not open file." << filename << std::endl;
+    return EXIT_FAILURE;
+  }
 
-  Particle p[Nparticles];
-  //{{'*', minColumn, 1},{'o', minColumn, 3.5},{'+', minColumn, 5.9}};
-  p[0] = Particle('*', minColumn, 1);
-  p[1] = Particle('o', minColumn, 3.5);
-  p[2] = Particle('+', minColumn, 5.9);
+  int Nparticles;
+  config >> Nparticles;
 
-  Screen display(maxColumn + 1); //Also for 1 parameter, Screen display = maxColumn
+  Particle* p = new Particle[Nparticles];
+  for (unsigned i = 0; i < Nparticles; ++i)
+  {
+    char sym;
+    double pos;
+    double speed;
+    config >> sym >> pos >> speed;
+    p[i] = Particle(sym,pos,speed);
+  }
 
-  //p[0].initialize('*', minColumn, 1);
-  //p[1].initialize('o', minColumn, 3.5);
-  //p[2].initialize('+', minColumn, 5.9);
+  Screen display(maxColumn + 1); 
 
   int timeStep = 0;
   const int stopTime = 100;
