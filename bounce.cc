@@ -168,7 +168,7 @@ int main()
   {
    	display.clear_screen();
 
-   	for (int i = 0 ; i < 3; i++)
+   	for (int i = 0 ; i < Nparticles; i++)
    	{	
    		p[i].draw(display);
    		p[i].move();
